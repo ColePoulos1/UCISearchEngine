@@ -1,0 +1,35 @@
+Poorly-Performing Queries:
+1. information science
+2. anteater recreation center
+3. Professor Pattis
+4. university of california irvine
+5. faculty profiles
+6. student profiles
+7. research
+8. computer science
+9. google
+10. orality and literacy 
+
+Well-Performing Queries:
+11. Professor Pattis
+12. cradl
+13. SATware
+14. horse colic
+15. information retrieval
+16. poulos (should return no results)
+17. benjamin koehne
+18. data visualization
+19. sjavanma (should return 1 result)
+20. image segmentation
+
+Before:
+I see results appearing fairly often with only one of each query word, and very short pages are values too highly; a problem with IDF?
+I will attempt to normalize this value or compute it differently. It also seems that many of my well-ranked results are on queries that return less than 1000 results, meaning that I need to
+improve my ranking process when handling generic queries. Therefore I will focus on normalization and a possible issue with my tf-idf computation.
+
+After:
+I realized that I was dividing my term frequency by the number of terms in the document before I was normalizing, which was giving
+way too much importance to exceedingly short documents. I have resolved this and am now following the standard LTC way of computing tf-idf.
+In addition, I fixed a problem with my evaluation of title and header tokens. This seemed to clear up most of the obvious flaws in
+my ranking, while the queries that were already doing well have not been affected in a meaningful way.
+I also completed my implementation of an optimized index using an "index of the index" to stay under 100 ms for most queries.
